@@ -20,7 +20,7 @@ parseTxt x = Action {
       end = read (last w)
    } where w = words x
 
-replaceElem :: Ord a => [a] -> a -> Integer -> [a]
+replaceElem :: [a] -> a -> Integer -> [a]
 replaceElem xs x n = do
    let nn = fromIntegral n
    let (y,z) = splitAt (nn + 1) xs
