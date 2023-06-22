@@ -37,7 +37,22 @@ cutLine' n xs ys
 
 cutLine :: Integer -> String -> [String]
 cutLine n xs = cutLine' n xs []
-    
+
+-- chopLists' :: Ord a => [a] -> [a] -> [a]
+-- chopLists' 
+
+deepIndex :: (Ord a, Integral b) => [[a]] -> b -> [[a]]
+-- deepIndex [[]] _ = [[]]
+deepIndex [] _ = []
+deepIndex (x:xs) n = (x !! nn) : deepIndex xs n
+    where 
+        nn = fromIntegral n
+
+chopLists :: (Ord a, Integral b) => [[a]] -> b -> [[a]]
+chopLists [[]] _ = [[]]
+chopLists [] _ = []
+chopLists (x:xs) n = deepIndex x n ++ chopLists xs n
+
 
 genCrateStack :: Integer -> Integer -> [String] -> [Crate]
 genCrateStack _ _ [] = []
@@ -57,6 +72,7 @@ main = withFile "../input.txt" ReadMode $ \h -> do
 
 
     -- let alln = [iFirst..iLast]
+    let qq = chopLists 
 
     let q = zip vv [1..] :: [([String], Integer)]
 
@@ -65,7 +81,6 @@ main = withFile "../input.txt" ReadMode $ \h -> do
     -- let vvvv = genCrateStack 0 0 q
 
 
-    
-    print vvvvv
+    print vvvv
     
     
