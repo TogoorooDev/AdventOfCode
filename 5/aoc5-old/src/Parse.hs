@@ -2,7 +2,7 @@ module Parse
    ( parseTxt
    ) where
 
-import App 
+import Helper
 
 -- move X from Y to Z
 data Action = Action 
@@ -20,12 +20,6 @@ parseTxt x = Action {
       end = read (last w)
    } where w = words x
 
-replaceElem :: [a] -> a -> Integer -> [a]
-replaceElem xs x n = do
-   let nn = fromIntegral n
-   let (y,z) = splitAt (nn + 1) xs
-   let q = init y ++ [x]
-   q ++ z
 
 -- replaceElem xs x n = s ++ [x] ++ e
 --    where
